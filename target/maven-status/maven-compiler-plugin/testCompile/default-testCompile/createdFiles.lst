@@ -1,0 +1,11 @@
+pageObjects\LogoutPage.class
+pageObjects\HomePage.class
+pageObjects\MyAccountPage.class
+pageObjects\AccountRegistrationPage.class
+pageObjects\LoginPage.class
+pageObjects\BasePage.class
+testRunner\TestRunner.class
+stepDefinitions\Step_Def_UI.class
+factory\BaseClass.class
+hooks\Hooks.class
+utilities\DataReader.class
