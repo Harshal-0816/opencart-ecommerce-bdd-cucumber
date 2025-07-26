@@ -6,6 +6,8 @@ pageObjects\LoginPage.class
 pageObjects\BasePage.class
 testRunner\TestRunner.class
 stepDefinitions\Step_Def_UI.class
+managers\PageObjectManager.class
+pageObjects\ProductsPage.class
 factory\BaseClass.class
 hooks\Hooks.class
 utilities\DataReader.class

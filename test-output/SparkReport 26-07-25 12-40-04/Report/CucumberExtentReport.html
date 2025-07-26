@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary"></span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Jul 25, 2025 03:29:43 pm</span></a>
+<a href="#"><span class="badge badge-primary">Jul 26, 2025 12:40:04 pm</span></a>
 </li>
 </ul>
 </div>
@@ -90,9 +90,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Login</p>
+            <p class="name">Search Product</p>
             <p class="text-sm">
-              <span>3:29:44 pm</span> / <span>00:00:03:828</span>
+              <span>12:40:05 pm</span> / <span>00:00:09:514</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -100,10 +100,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Login</h5>
-<span class='badge badge-success'>07.25.2025 3:29:44 pm</span>
-<span class='badge badge-danger'>07.25.2025 3:29:47 pm</span>
-<span class='badge badge-default'>00:00:03:828</span>
+<h5 class="test-status text-pass">Search Product</h5>
+<span class='badge badge-success'>07.26.2025 12:40:05 pm</span>
+<span class='badge badge-danger'>07.26.2025 12:40:15 pm</span>
+<span class='badge badge-default'>00:00:09:514</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -115,39 +115,32 @@
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Successful Login with InValid Credentials</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>User is able to search the product by using search functionality</div>
       </div>
     </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>Successful Login with InValid Credentials</div>
-                </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefinitions.Step_Def_UI.userIsAbleToSeeTheHomePage()">
+                <span>Given user is able to see the Home Page</span>
+      <div>
+      </div>
               </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given the user navigates to login page</span>
+              <div class="step pass-bg" title="stepDefinitions.Step_Def_UI.userEntersTheProductNameInTheSearchBar(java.lang.String)">
+                <span>When user enters the product name "iPhone" in the search bar</span>
       <div>
       </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When user enters "star123@gmail.com" and "star@123"</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And the user clicks on the Login button</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then System throws an error as "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour."</span>
-      <div>
-      </div>
-                  </div>
               </div>
-            </div>
+              <div class="step pass-bg" title="stepDefinitions.Step_Def_UI.userClicksOnTheSearchButton()">
+                <span>And user clicks on the search button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefinitions.Step_Def_UI.userShouldBeAbleToSeeTheSearchProducts()">
+                <span>Then user should be able to see the search products</span>
+      <div>
+      </div>
+              </div>
+          </div>
         </div>
   </div>
 </div>
@@ -194,11 +187,11 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>15:29:44 pm</td>
+<td>12:40:05 pm</td>
 <td>
-<a href="#" class="linked" test-id='1' id='3'>Successful Login with InValid Credentials</a>
+<a href="#" class="linked" test-id='1' id='2'>User is able to search the product by using search functionality</a>
 <div class="">
-<span class="badge badge-default">Login.Successful Login with InValid Credentials</span>
+<span class="badge badge-default">Search Product.User is able to search the product by using search functionality</span>
 </div>
 </td>
 </tr>
@@ -219,13 +212,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Jul 25, 2025 03:29:43 pm</h3>
+<h3>Jul 26, 2025 12:40:04 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Jul 25, 2025 03:29:47 pm</h3>
+<h3>Jul 26, 2025 12:40:15 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -315,7 +308,7 @@
 </div></div>
 <script>
 var timeline = {
-"Login":3.828
+"Search Product":9.514
 };
 </script>
 <div class="row">

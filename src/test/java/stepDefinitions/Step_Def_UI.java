@@ -1,54 +1,62 @@
 package stepDefinitions;
 
+import io.cucumber.java.en.And;
+import managers.PageObjectManager;
 import org.junit.Assert;
 import factory.BaseClass;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pageObjects.*;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 public class Step_Def_UI {
 
-     HomePage hp= new HomePage(BaseClass.getDriver());;
-     LoginPage lp = new LoginPage(BaseClass.getDriver());;
-     AccountRegistrationPage regpage = new AccountRegistrationPage(BaseClass.getDriver());
-	 MyAccountPage myacc = new MyAccountPage(BaseClass.getDriver());
-	 LogoutPage lop = new LogoutPage(BaseClass.getDriver());
+	WebDriver driver;
+	PageObjectManager pom;
+
+	public Step_Def_UI()
+	{
+		this.driver=BaseClass.getDriver();
+		this.pom=new PageObjectManager(driver);
+	}
 
 	@Given("the user navigates to Register Account page")
 	public void user_navigates_to_register_account_page()
 	{
-    	hp.clickMyAccount();
-        hp.clickRegister();
+    	pom.getHomePage().clickMyAccount();
+        pom.getHomePage().clickRegister();
 	}
 	
 	@When("the user enters {string} {string} {string} {string} {string} {string}")
 	public void the_user_enters(String fname, String lname,String email, String tel, String pwd, String cpwd)
 	{
-		regpage.setFirstName(fname);
-		regpage.setLastName(lname);
+		pom.getRegistrationPage().setFirstName(fname);
+		pom.getRegistrationPage().setLastName(lname);
 
 		String Email=BaseClass.randomEmail();
-		regpage.setEmail(Email);
+		pom.getRegistrationPage().setEmail(Email);
 
-		regpage.setTelephone(tel);
-		regpage.setPassword(pwd);
-		regpage.setConfirmPassword(cpwd);
+		pom.getRegistrationPage().setTelephone(tel);
+		pom.getRegistrationPage().setPassword(pwd);
+		pom.getRegistrationPage().setConfirmPassword(cpwd);
 	}
 
 	@When("the user selects Privacy Policy")
 	public void user_selects_privacy_policy()
 	{
-		regpage.setPrivacyPolicy();
+		pom.getRegistrationPage().setPrivacyPolicy();
 	}
 
 	@When("the user clicks on Continue button")
 	public void user_clicks_on_continue_button()
 	{
-		regpage.clickContinue();
+		pom.getRegistrationPage().clickContinue();
 	}
 
 	@Then("the user account should get created successfully")
@@ -56,7 +64,7 @@ public class Step_Def_UI {
 	{
 		try
 			{
-				String confmsg = regpage.getConfirmationMsg();
+				String confmsg = pom.getRegistrationPage().getConfirmationMsg();
 				Assert.assertEquals("Your Account Has Been Created!", confmsg);
 			}
 		catch (Exception e)
@@ -69,8 +77,8 @@ public class Step_Def_UI {
 	@Given("the user navigates to login page")
 	public void the_user_navigates_to_login_page()
 	{
-		hp.clickMyAccount();
-		hp.clickLogin();
+		pom.getHomePage().clickMyAccount();
+		pom.getHomePage().clickLogin();
 	}
 	@When("user enters email and password")
 	public void user_enters_email_and_password() throws IOException
@@ -81,8 +89,8 @@ public class Step_Def_UI {
 				String setEmail = p.getProperty("email");
 				String setPwd = p.getProperty("password");
 
-				lp.setEmail(setEmail);
-				lp.setPassword(setPwd);
+				pom.getLoginPage().setEmail(setEmail);
+				pom.getLoginPage().setPassword(setPwd);
 		    }
 		catch (Exception e)
 			{
@@ -94,14 +102,14 @@ public class Step_Def_UI {
 	@When("the user clicks on the Login button")
 	public void the_user_clicks_on_the_login_button() throws InterruptedException
 	{
-		lp.clickLogin();
+		pom.getLoginPage().clickLogin();
 	}
 	@Then("the user should be redirected to the MyAccount Page")
 	public void the_user_should_be_redirected_to_the_my_account_page()
 	{
 		try
 			{
-				boolean logo_myacc_status= myacc.logo_myacc();
+				boolean logo_myacc_status= pom.getMyAccountPage().logo_myacc();
 				Assert.assertTrue(logo_myacc_status);
 			}
 		catch (Exception e)
@@ -114,12 +122,12 @@ public class Step_Def_UI {
 	@When("user navigates to the Myaccount dropdown")
 	public void user_navigates_to_the_myaccount_dropdown()
 	{
-		myacc.Myaccdrpdwn();
+		pom.getMyAccountPage().Myaccdrpdwn();
 	}
 	@When("user click on the Logout button")
 	public void user_click_on_the_logout_button()
 	{
-		myacc.clicklogout();
+		pom.getMyAccountPage().clicklogout();
 	}
 
 	@Then("user should be redirected to the logout page")
@@ -127,11 +135,11 @@ public class Step_Def_UI {
 	{
 		try
 			{
-				String logoutMessage= lop.cnf_logout_msg();
+				String logoutMessage= pom.getLogoutPage().cnf_logout_msg();
 				Assert.assertEquals("Logout message mismatch", "Account Logout", logoutMessage);
-				lop.click_logout_continue();
+				pom.getLogoutPage().click_logout_continue();
 				Thread.sleep(3000);
-				boolean logo_display=hp.Logo_Displayed();
+				boolean logo_display=pom.getHomePage().Logo_Displayed();
 				Assert.assertTrue("Logo is not Displayed after logout", logo_display);
 			}
 		catch (Exception e)
@@ -145,8 +153,8 @@ public class Step_Def_UI {
 	public void userEntersEmailAndPassword(String Email, String Password)
 	{
 		try {
-				lp.setEmail(Email);
-				lp.setPassword(Password);
+				pom.getLoginPage().setEmail(Email);
+				pom.getLoginPage().setPassword(Password);
 			}
 		catch (Exception e)
 		{
@@ -160,7 +168,7 @@ public class Step_Def_UI {
 	{
 		try
 		{
-			String Warning_msg = hp.Invalid_login_msg();
+			String Warning_msg = pom.getHomePage().Invalid_login_msg();
 			Assert.assertEquals("Error message mismatch", ExpectedErrorMessage, Warning_msg);
 		}
 		catch (Exception e)
@@ -170,7 +178,85 @@ public class Step_Def_UI {
 		}
 
 	}
+
+	@Given("user is able to see the Home Page")
+	public void userIsAbleToSeeTheHomePage()
+	{
+		try
+		{
+			String Title = driver.getTitle();
+			Assert.assertEquals("Title mismatch error", "Your Store", Title);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Test failed due to exception: " + e.getMessage());
+		}
+	}
+
+	@When("user enters the product name {string} in the search bar")
+	public void userEntersTheProductNameInTheSearchBar(String Product)
+	{
+		pom.getHomePage().txt_Search(Product);
+
+	}
+
+	@And("user clicks on the search button")
+	public void userClicksOnTheSearchButton()
+	{
+		pom.getHomePage().btn_search();
+	}
+
+	@Then("user should be able to see the search products")
+	public void userShouldBeAbleToSeeTheSearchProducts()
+	{
+		try
+		{
+			List<WebElement> ListOfProducts = pom.getProductsPage().ProductsList();
+			boolean productFound=false;
+
+			for (WebElement ProductsTexts : ListOfProducts)
+			{
+				String ProductName = ProductsTexts.getText();
+				if (ProductName.equalsIgnoreCase("iPhone"))
+				{
+					productFound=true;
+					break;
+				}
+			}
+			if(productFound)
+			{
+				Assert.assertTrue("Product 'iPhone' Found", true);
+			}
+			else
+			{
+				Assert.fail("Product 'iPhone' not found");
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Test Failed due to Exception" + e.getMessage());
+		}
+
+
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

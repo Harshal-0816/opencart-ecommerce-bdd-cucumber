@@ -20,6 +20,8 @@ public class HomePage extends BasePage {
 	@FindBy(xpath="//div[@id='search']//button[@type='button']") WebElement btnSearch;
 	@FindBy(xpath = "//div[@id='logo']//h1//a[text()='Qafox.com']") WebElement Logo;
 	@FindBy(xpath="//div[contains(text(), 'Warning: ')]") WebElement Warning_Msg;
+	@FindBy(xpath="//div//input[@type='text' and @name='search']") WebElement SearchText;
+	@FindBy(xpath="//span//button[@type='button' and @class='btn btn-default btn-lg']") WebElement SearchButton;
 
 	// Action Methods
 	public void clickMyAccount()
@@ -55,5 +57,15 @@ public class HomePage extends BasePage {
 	public String Invalid_login_msg()
 	{
 		return Warning_Msg.getText();
+	}
+
+	public void txt_Search(String Product)
+	{
+		SearchText.sendKeys(Product);
+	}
+
+	public void btn_search()
+	{
+		SearchButton.click();
 	}
 }

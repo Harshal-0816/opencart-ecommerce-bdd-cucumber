@@ -22,7 +22,7 @@ Feature: Login
       | zuri08@gmail.com  | harshal@123 |
       | zuri123@gmail.com | zuri@123    |
 
-  @hTest
+  #@hTest
   Scenario Outline: Successful Login with InValid Credentials
     Given the user navigates to login page
     When user enters "<Email>" and "<Password>"
