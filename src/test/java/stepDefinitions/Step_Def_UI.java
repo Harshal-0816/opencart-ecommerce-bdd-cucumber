@@ -218,7 +218,13 @@ public class Step_Def_UI {
 			for (WebElement ProductsTexts : ListOfProducts)
 			{
 				String ProductName = ProductsTexts.getText();
+
 				if (ProductName.equalsIgnoreCase("iPhone"))
+				{
+					productFound=true;
+					break;
+				}
+				else if (ProductName.equalsIgnoreCase("MacBook Air"))
 				{
 					productFound=true;
 					break;
@@ -226,11 +232,11 @@ public class Step_Def_UI {
 			}
 			if(productFound)
 			{
-				Assert.assertTrue("Product 'iPhone' Found", true);
+				Assert.assertTrue("Product Found", true);
 			}
 			else
 			{
-				Assert.fail("Product 'iPhone' not found");
+				Assert.fail("Product not found");
 			}
 		}
 		catch (Exception e)
@@ -242,6 +248,20 @@ public class Step_Def_UI {
 
 	}
 
+	@Then("user should be able to see the message {string}")
+	public void userShouldBeAbleToSeeTheMessage(String NoProductFoundMessage)
+	{
+		try
+		{
+			String Message = pom.getProductsPage().Msg_NoProductFound();
+			Assert.assertEquals("Failed to find the 'No Product Found message'", "There is no product that matches the search criteria.", Message);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Failed due to Exception" + e.getMessage());
+		}
+	}
 }
 
 

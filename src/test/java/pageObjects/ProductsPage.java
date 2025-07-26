@@ -16,10 +16,16 @@ public class ProductsPage extends BasePage
 
     //locators
     @FindBy(xpath="//div[@class='caption']//h4//a") List<WebElement> ProductsList;
+    @FindBy(xpath="//p[text()='There is no product that matches the search criteria.']") WebElement NoProductFound;
 
     //ActionMethods
     public List<WebElement> ProductsList()
     {
         return ProductsList;
+    }
+
+    public String Msg_NoProductFound()
+    {
+        return NoProductFound.getText();
     }
 }
