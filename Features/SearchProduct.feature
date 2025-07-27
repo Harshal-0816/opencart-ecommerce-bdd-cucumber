@@ -27,7 +27,7 @@ Feature: Search Product
     When user clicks on the search button
     Then user should be able to see the message "There is no product that matches the search criteria."
 
-    @hTest
+    #@hTest
   Scenario: User is able to Login and user is able to search the products
     Given the user navigates to login page
     When user enters email and password

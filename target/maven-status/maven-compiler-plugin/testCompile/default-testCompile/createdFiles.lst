@@ -2,6 +2,7 @@ pageObjects\LogoutPage.class
 pageObjects\HomePage.class
 pageObjects\MyAccountPage.class
 pageObjects\AccountRegistrationPage.class
+pageObjects\ProductDisplayPage.class
 pageObjects\LoginPage.class
 pageObjects\BasePage.class
 testRunner\TestRunner.class

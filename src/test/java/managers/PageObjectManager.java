@@ -13,6 +13,7 @@ public class PageObjectManager
     private LogoutPage logoutPage;
     private MyAccountPage myAccountPage;
     private ProductsPage productsPage;
+    private ProductDisplayPage productDisplayPage;
 
     public PageObjectManager(WebDriver driver)
     {
@@ -71,6 +72,15 @@ public class PageObjectManager
             productsPage = new ProductsPage(driver);
         }
         return productsPage;
+    }
+
+    public ProductDisplayPage getProductDisplayPage()
+    {
+         if(productDisplayPage == null)
+         {
+            productDisplayPage = new ProductDisplayPage(driver);
+         }
+         return productDisplayPage;
     }
 
 }

@@ -9,5 +9,6 @@ C:\Automation\Cucumber\opencart_cucumber\src\test\java\testRunner\TestRunner.jav
 C:\Automation\Cucumber\opencart_cucumber\src\test\java\pageObjects\ProductsPage.java
 C:\Automation\Cucumber\opencart_cucumber\src\test\java\managers\PageObjectManager.java
 C:\Automation\Cucumber\opencart_cucumber\src\test\java\pageObjects\HomePage.java
+C:\Automation\Cucumber\opencart_cucumber\src\test\java\pageObjects\ProductDisplayPage.java
 C:\Automation\Cucumber\opencart_cucumber\src\test\java\pageObjects\AccountRegistrationPage.java
 C:\Automation\Cucumber\opencart_cucumber\src\test\java\pageObjects\BasePage.java

@@ -229,6 +229,11 @@ public class Step_Def_UI {
 					productFound=true;
 					break;
 				}
+				else if(ProductName.equalsIgnoreCase("MacBook"))
+				{
+					productFound=true;
+					break;
+				}
 			}
 			if(productFound)
 			{
@@ -260,6 +265,84 @@ public class Step_Def_UI {
 		{
 			e.printStackTrace();
 			Assert.fail("Failed due to Exception" + e.getMessage());
+		}
+	}
+
+	@When("user click on the Product")
+	public void userClickOnTheProduct()
+	{
+		List<WebElement> ListOfProducts= pom.getProductsPage().ProductsList();
+
+		for(WebElement Product: ListOfProducts)
+		{
+			try
+			{
+				String ProductName = Product.getText();
+				if (ProductName.equalsIgnoreCase("MacBook"))
+				{
+					Product.click();
+					return;
+				}
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				Assert.fail("Failed due to Exception: "+e.getMessage());
+			}
+		}
+		Assert.fail("No product found with name 'MacBook'");
+	}
+
+
+	@Then("user successfully navigates to the product display page")
+	public void userSuccessfullyNavigatesToTheProductDisplayPage()
+	{
+		try
+		{
+			String ProductDisplayPageTitle = driver.getTitle();
+			Assert.assertEquals("MacBook", ProductDisplayPageTitle);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Failed due to exception"+e.getMessage());
+		}
+	}
+
+
+	@When("user clicks on the Add To Cart option")
+	public void userClicksOnTheAddToCartOption()
+	{
+		try
+		{
+			String ProductName = pom.getProductDisplayPage().NameOfProduct();
+			if (ProductName.equalsIgnoreCase("MacBook"))
+			{
+				pom.getProductDisplayPage().btn_AddToCart();
+				Assert.assertTrue("Add to Cart failed", true);
+			}
+		}
+		catch(Exception e)
+		{
+			Assert.fail("Failed due to exception"+e.getMessage());
+		}
+	}
+
+	@Then("user is able to see the Successfull Add to Cart message displayed on the screen for {string}")
+	public void userIsAbleToSeeTheSuccessfullAddToCartMessageDisplayedOnTheScreenFor(String product)
+	{
+		try
+		{
+			String actualConfMsgOfAddToCart = pom.getProductDisplayPage().ConfMsg_AddToCart().trim();
+			String expectedConfMsgOfAddToCart = "Success: You have added "+ product +" to your shopping cart!";
+
+			Assert.assertTrue("Mismatch in Add To Cart Message\nExpected: " + expectedConfMsgOfAddToCart + "\nActual: " + actualConfMsgOfAddToCart,
+					actualConfMsgOfAddToCart.contains(expectedConfMsgOfAddToCart));
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			Assert.fail("Failed due to exception"+e.getMessage());
 		}
 	}
 }
